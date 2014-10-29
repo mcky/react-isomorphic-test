@@ -12,7 +12,7 @@ var TodoList = React.createClass({displayName: 'TodoList',
 
 var TodoApp = React.createClass({displayName: 'TodoApp',
 	getInitialState: function() {
-		return this.props
+		return this.props.data
 	},
 	componentDidMount: function() {
 		socket.on('todo:recieve', this.initialize);
@@ -36,7 +36,7 @@ var TodoApp = React.createClass({displayName: 'TodoApp',
 	render: function() {
 		return (
 			React.DOM.div(null, 
-				React.DOM.h3(null, "TODO"), 
+				React.DOM.h1(null, "Todos"), 
 				TodoList({items: this.state.items}), 
 				React.DOM.form({onSubmit: this.handleSubmit}, 
 					React.DOM.input({onChange: this.onChange, value: this.state.text}), 

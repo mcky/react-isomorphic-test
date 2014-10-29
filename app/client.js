@@ -1,7 +1,8 @@
 var React = require('react')
-	, App = require('./app')
+	, Route = require('./components/route')
+	, Nav = require('./components/nav')
 
 window.React = React
-window.App = App
 
-React.renderComponent(App(data), document.getElementById('app'))
+React.renderComponent(Route(), document.getElementById('app'))
+React.renderComponent(Nav(), document.getElementById('nav'))

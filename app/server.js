@@ -1,13 +1,15 @@
 var express = require('express')
 	, hbs = require('hbs')
-	, app = express()
 	, expstate = require('express-state')
 	, React = require('react')
-	, reactApp = require('./app')
+	, app = express()
 	, http = require('http').Server(app)
 	, io = require('socket.io')(http)
+	, url = require('url')
+	, nav = require('./components/nav')
+	, reactApp = require('./app')
+	, port = process.env.PORT || 3000
 
-var port = process.env.PORT || 3000
 app.set('views', __dirname + '/views')
 app.set('view options', { layout:'layout.html' })
 app.set('view engine', 'html')
@@ -23,11 +25,13 @@ var data = {
 	text: ''
 }
 
-app.route('/')
+app.route('/*')
 	.get(function(req, res){
+		var path = url.parse(req.url).pathname
 		res.expose({ data: data })
 		res.render('index', {
-			react : React.renderComponentToString(reactApp(data))
+			nav : React.renderComponentToString(nav()),
+			react : React.renderComponentToString(reactApp({path: path, data: data}))
 		})
 	})
 

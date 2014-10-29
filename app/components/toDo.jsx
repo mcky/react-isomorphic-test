@@ -11,7 +11,7 @@ var TodoList = React.createClass({
 
 var TodoApp = React.createClass({
 	getInitialState: function() {
-		return this.props
+		return this.props.data
 	},
 	componentDidMount: function() {
 		socket.on('todo:recieve', this.initialize);
@@ -35,7 +35,7 @@ var TodoApp = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<h3>TODO</h3>
+				<h1>Todos</h1>
 				<TodoList items={this.state.items} />
 				<form onSubmit={this.handleSubmit}>
 					<input onChange={this.onChange} value={this.state.text} />

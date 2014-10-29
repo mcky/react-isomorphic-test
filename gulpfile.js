@@ -14,7 +14,7 @@ gulp.task('scripts', function() {
 	gulp.src('./app/client.js')
 		.pipe(browserify())
 		.pipe(rename('bundle.js'))
-		.pipe(uglify())
+		// .pipe(uglify())
 		.pipe(gulp.dest('./app/public/js/'))
 });
 

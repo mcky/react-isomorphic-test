@@ -1,3 +1,3 @@
-var App = require('./components/toDo')
+var App = require('./components/route')
 
 module.exports = App
